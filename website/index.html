@@ -21,7 +21,7 @@
         /* Gradient utilities */
         .gradient-text { background: linear-gradient(135deg, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .gradient-btn { background: linear-gradient(135deg, #7c3aed, #2563eb); transition: all 0.3s; }
-        .gradient-btn:hover { background: linear-gradient(135deg, #6d28d9, #1d4ed8); transform: translateY(-1px); box-shadow: 0 8px 30px rgba(124, 58, 237, 0.3); }
+        .gradient-btn:hover { background: linear-gradient(135deg, #6d28d9, #1d4ed8); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124, 58, 237, 0.35); }
         .gradient-border { position: relative; }
         .gradient-border::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, rgba(139,92,246,0.4), rgba(6,182,212,0.4)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
 
@@ -32,7 +32,8 @@
         .hero-video { transition: opacity 1.5s ease-in-out; }
 
         /* Card glass */
-        .card-glass { background: rgba(24, 24, 27, 0.7); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .card-glass { background: rgba(24, 24, 27, 0.7); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-glass:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 24px rgba(139,92,246,0.08); }
 
         /* Fade-in animation */
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -50,6 +51,14 @@
         /* Stat counter */
         .stat-number { font-variant-numeric: tabular-nums; }
 
+        /* Hero shimmer animation */
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        .shimmer-text { background: linear-gradient(90deg, #8b5cf6 0%, #06b6d4 25%, #f0abfc 50%, #06b6d4 75%, #8b5cf6 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 6s linear infinite; }
+
+        /* CTA glow pulse */
+        @keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 60px rgba(139,92,246,0.15), 0 0 120px rgba(139,92,246,0.05); } 50% { box-shadow: 0 0 80px rgba(139,92,246,0.25), 0 0 160px rgba(139,92,246,0.1); } }
+        .glow-animate { animation: glow-pulse 4s ease-in-out infinite; }
+
         /* Mobile drawer */
         #mobileOverlay { transition: opacity 0.3s; }
         #mobileDrawer { transition: transform 0.3s; transform: translateX(100%); }
@@ -62,18 +71,18 @@
         <nav id="mainNav" class="fixed top-0 w-full z-50 border-b border-transparent transition-all duration-300" style="background: transparent;">
             <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
                 <a href="/" class="flex items-center gap-2 text-xl font-bold">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="url(#lg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-8 h-8"><defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="8" fill="none" stroke="url(#lg)" stroke-width="2"/><polygon points="13,9 13,23 24,16" fill="url(#lg)"/></svg>
                     <span class="gradient-text">Vidmomo</span>
                 </a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="/explore/all" class="text-sm text-gray-400 hover:text-white transition">Explore</a>
-                    <a href="/create" class="text-sm text-gray-400 hover:text-white transition">Create</a>
+                    <a href="https://app.vidmomo.com/explore/all" class="text-sm text-gray-400 hover:text-white transition">Explore</a>
+                    <a href="https://app.vidmomo.com/create" class="text-sm text-gray-400 hover:text-white transition">Create</a>
                     <a href="#features" class="text-sm text-gray-400 hover:text-white transition">Features</a>
                     <a href="#pricing" class="text-sm text-gray-400 hover:text-white transition">Pricing</a>
                 </div>
                 <div class="flex items-center gap-3">
-                    <a href="/login{{utm_source}}" class="hidden md:inline-flex text-sm text-gray-300 hover:text-white transition px-4 py-2">Log in</a>
-                    <a href="/login{{utm_source}}" class="gradient-btn text-white text-sm px-5 py-2.5 rounded-lg font-medium inline-flex items-center gap-2">
+                    <a href="https://app.vidmomo.com/login{{utm_source}}" class="hidden md:inline-flex text-sm text-gray-300 hover:text-white transition px-4 py-2">Log in</a>
+                    <a href="https://app.vidmomo.com/login{{utm_source}}" class="gradient-btn text-white text-sm px-5 py-2.5 rounded-lg font-medium inline-flex items-center gap-2">
                         Get Started Free
                     </a>
                     <button id="menuBtn" class="md:hidden text-gray-400 hover:text-white p-2" onclick="toggleMobile()">
@@ -93,13 +102,13 @@
                 </button>
             </div>
             <div class="flex flex-col p-4 gap-1">
-                <a href="/explore/all" class="text-gray-300 hover:text-white hover:bg-zinc-800 px-4 py-3 rounded-lg transition">Explore</a>
-                <a href="/create" class="text-gray-300 hover:text-white hover:bg-zinc-800 px-4 py-3 rounded-lg transition">Create</a>
+                <a href="https://app.vidmomo.com/explore/all" class="text-gray-300 hover:text-white hover:bg-zinc-800 px-4 py-3 rounded-lg transition">Explore</a>
+                <a href="https://app.vidmomo.com/create" class="text-gray-300 hover:text-white hover:bg-zinc-800 px-4 py-3 rounded-lg transition">Create</a>
                 <a href="#features" class="text-gray-300 hover:text-white hover:bg-zinc-800 px-4 py-3 rounded-lg transition" onclick="toggleMobile()">Features</a>
                 <a href="#pricing" class="text-gray-300 hover:text-white hover:bg-zinc-800 px-4 py-3 rounded-lg transition" onclick="toggleMobile()">Pricing</a>
                 <hr class="border-zinc-800 my-2">
-                <a href="/login{{utm_source}}" class="text-gray-300 hover:text-white hover:bg-zinc-800 px-4 py-3 rounded-lg transition">Log in</a>
-                <a href="/login{{utm_source}}" class="gradient-btn text-white text-center px-4 py-3 rounded-lg font-medium mt-1">Get Started Free</a>
+                <a href="https://app.vidmomo.com/login{{utm_source}}" class="text-gray-300 hover:text-white hover:bg-zinc-800 px-4 py-3 rounded-lg transition">Log in</a>
+                <a href="https://app.vidmomo.com/login{{utm_source}}" class="gradient-btn text-white text-center px-4 py-3 rounded-lg font-medium mt-1">Get Started Free</a>
             </div>
         </div>
     </header>
@@ -111,10 +120,10 @@
         <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div class="hero-video-wrap">
                 <video id="heroVid1" class="hero-video" autoplay muted loop playsinline style="opacity:1;">
-                    <source src="https://res.aireel.net/aireel-webapp/static/home-main-3.34767f8f.webm" type="video/webm">
+                    <source src="https://app.vidmomo.com/imgs/index1.webm" type="video/webm">
                 </video>
                 <video id="heroVid2" class="hero-video" autoplay muted loop playsinline style="opacity:0;">
-                    <source src="https://res.aireel.net/aireel-webapp/static/home-main-4.674cec85.webm" type="video/webm">
+                    <source src="https://app.vidmomo.com/imgs/index2.webm" type="video/webm">
                 </video>
                 <div class="overlay"></div>
             </div>
@@ -127,7 +136,7 @@
 
                 <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6">
                     Turn Ideas Into<br>
-                    <span class="gradient-text">Stunning Videos</span>
+                    <span class="shimmer-text">Stunning Videos</span>
                 </h1>
 
                 <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -135,11 +144,11 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="/create{{utm_source}}" class="gradient-btn text-white px-8 py-4 rounded-xl font-semibold text-base inline-flex items-center gap-2 w-full sm:w-auto justify-center">
+                    <a href="https://app.vidmomo.com/create{{utm_source}}" class="gradient-btn text-white px-8 py-4 rounded-xl font-semibold text-base inline-flex items-center gap-2 w-full sm:w-auto justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
                         Start Creating — It's Free
                     </a>
-                    <a href="/explore/all" class="text-gray-300 hover:text-white px-8 py-4 rounded-xl font-medium text-base border border-zinc-700 hover:border-zinc-500 transition inline-flex items-center gap-2 w-full sm:w-auto justify-center">
+                    <a href="https://app.vidmomo.com/explore/all" class="text-gray-300 hover:text-white px-8 py-4 rounded-xl font-medium text-base border border-zinc-700 hover:border-zinc-500 transition inline-flex items-center gap-2 w-full sm:w-auto justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z"/></svg>
                         Explore Gallery
                     </a>
@@ -308,11 +317,11 @@
                             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> HD downloads</li>
                             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> First-buy bonus +20%</li>
                         </ul>
-                        <a href="/me/topup{{utm_source}}" class="block text-center py-3 rounded-lg border border-zinc-700 text-sm font-medium text-gray-300 hover:bg-zinc-800 hover:text-white transition">Get Started</a>
+                        <a href="https://app.vidmomo.com/me/topup{{utm_source}}" class="block text-center py-3 rounded-lg border border-zinc-700 text-sm font-medium text-gray-300 hover:bg-zinc-800 hover:text-white transition">Get Started</a>
                     </div>
 
                     <!-- Plus (Popular) -->
-                    <div class="card-glass rounded-2xl p-6 fade-in relative glow-purple gradient-border">
+                    <div class="card-glass rounded-2xl p-6 fade-in relative glow-purple glow-animate gradient-border">
                         <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-xs font-semibold">POPULAR</div>
                         <h3 class="text-lg font-semibold mb-1">Plus</h3>
                         <div class="flex items-baseline gap-1 mb-4">
@@ -325,7 +334,7 @@
                             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> HD downloads</li>
                             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> First-buy bonus +20%</li>
                         </ul>
-                        <a href="/me/topup{{utm_source}}" class="gradient-btn block text-center py-3 rounded-lg text-sm font-medium text-white">Get Plus</a>
+                        <a href="https://app.vidmomo.com/me/topup{{utm_source}}" class="gradient-btn block text-center py-3 rounded-lg text-sm font-medium text-white">Get Plus</a>
                     </div>
 
                     <!-- Pro -->
@@ -341,7 +350,7 @@
                             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> HD downloads</li>
                             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> First-buy bonus +20%</li>
                         </ul>
-                        <a href="/me/topup{{utm_source}}" class="block text-center py-3 rounded-lg border border-zinc-700 text-sm font-medium text-gray-300 hover:bg-zinc-800 hover:text-white transition">Get Pro</a>
+                        <a href="https://app.vidmomo.com/me/topup{{utm_source}}" class="block text-center py-3 rounded-lg border border-zinc-700 text-sm font-medium text-gray-300 hover:bg-zinc-800 hover:text-white transition">Get Pro</a>
                     </div>
                 </div>
 
@@ -353,13 +362,16 @@
         <!-- CTA -->
         <!-- ============================================================ -->
         <section class="py-24 px-6">
-            <div class="max-w-3xl mx-auto text-center card-glass rounded-3xl p-12 sm:p-16 glow-purple gradient-border fade-in">
+            <div class="max-w-3xl mx-auto text-center card-glass rounded-3xl p-12 sm:p-16 glow-purple glow-animate gradient-border fade-in relative overflow-hidden">
+                <div class="absolute inset-0 opacity-30" style="background: radial-gradient(circle at 20% 50%, rgba(139,92,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(6,182,212,0.1) 0%, transparent 50%);"></div>
+                <div class="relative z-10">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to Create Your First Video?</h2>
                 <p class="text-gray-400 mb-8 max-w-lg mx-auto">Join thousands of creators using AI to produce stunning videos. Start free — no credit card needed.</p>
-                <a href="/login{{utm_source}}" class="gradient-btn text-white px-10 py-4 rounded-xl font-semibold text-base inline-flex items-center gap-2">
+                <a href="https://app.vidmomo.com/login{{utm_source}}" class="gradient-btn text-white px-10 py-4 rounded-xl font-semibold text-base inline-flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
                     Get Started Free
                 </a>
+                </div>
             </div>
         </section>
 
@@ -443,7 +455,7 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center gap-2 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="url(#lg2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><defs><linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6"><defs><linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="8" fill="none" stroke="url(#lg2)" stroke-width="2"/><polygon points="13,9 13,23 24,16" fill="url(#lg2)"/></svg>
                         <span class="font-bold gradient-text">Vidmomo</span>
                     </div>
                     <p class="text-sm text-gray-500 leading-relaxed">AI-powered video generation platform. Turn your ideas into stunning videos.</p>
@@ -451,9 +463,9 @@
                 <div>
                     <h4 class="font-semibold text-sm text-gray-300 mb-4">Product</h4>
                     <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="/create" class="hover:text-gray-300 transition">Create Video</a></li>
-                        <li><a href="/explore/all" class="hover:text-gray-300 transition">Explore Gallery</a></li>
-                        <li><a href="/me/topup" class="hover:text-gray-300 transition">Pricing</a></li>
+                        <li><a href="https://app.vidmomo.com/create" class="hover:text-gray-300 transition">Create Video</a></li>
+                        <li><a href="https://app.vidmomo.com/explore/all" class="hover:text-gray-300 transition">Explore Gallery</a></li>
+                        <li><a href="https://app.vidmomo.com/me/topup" class="hover:text-gray-300 transition">Pricing</a></li>
                     </ul>
                 </div>
                 <div>
@@ -466,8 +478,8 @@
                 <div>
                     <h4 class="font-semibold text-sm text-gray-300 mb-4">Legal</h4>
                     <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="/terms" class="hover:text-gray-300 transition">Terms of Service</a></li>
-                        <li><a href="/privacy" class="hover:text-gray-300 transition">Privacy Policy</a></li>
+                        <li><a href="https://app.vidmomo.com/terms" class="hover:text-gray-300 transition">Terms of Service</a></li>
+                        <li><a href="https://app.vidmomo.com/privacy" class="hover:text-gray-300 transition">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
