@@ -1,0 +1,15 @@
+version: 1
+binding_id: 1902
+domain: vidmomo.com
+domain_slug: do-c50be5714479264b63f634d3
+endpoint: https://api.litestartup.com
+repo_url: https://github.com/kaka987/vid.git
+sync:
+  blog:
+    path: "blog/**/*.md"
+  website:
+    path: "website/**/*.html"
+  docs:
+    path: "docs/**/*.md"
+  changelog:
+    path: "changelog/**/*.md"
